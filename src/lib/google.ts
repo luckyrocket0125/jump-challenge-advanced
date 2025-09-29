@@ -1,11 +1,10 @@
 import { google } from 'googleapis'
-import { OAuth2Client } from 'google-auth-library'
 
-export const createGoogleClient = (accessToken: string, refreshToken?: string): OAuth2Client => {
-  const client = new OAuth2Client(
+export const createGoogleClient = (accessToken: string, refreshToken?: string) => {
+  const client = new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
-    'http://localhost:3000/api/auth/callback/google'
+    process.env.NEXTAUTH_URL + '/api/auth/callback/google'
   )
   
   client.setCredentials({ 
@@ -16,12 +15,12 @@ export const createGoogleClient = (accessToken: string, refreshToken?: string): 
   return client
 }
 
-export const getGmailService = (client: OAuth2Client) => {
-  return google.gmail({ version: 'v1', auth: client as any })
+export const getGmailService = (client: any) => {
+  return google.gmail({ version: 'v1', auth: client })
 }
 
-export const getCalendarService = (client: OAuth2Client) => {
-  return google.calendar({ version: 'v3', auth: client as any })
+export const getCalendarService = (client: any) => {
+  return google.calendar({ version: 'v3', auth: client })
 }
 
 export const getGmailMessages = async (gmail: any, query: string = '', maxResults: number = 10) => {

@@ -366,7 +366,7 @@ export async function ingestHubspotData(userId: string, accessToken: string) {
         try {
           const notes = await getHubspotContactNotes(hubspotClient, contact.id)
           
-          for (const note of notes) {
+          for (const note of notes as any[]) {
             if (!note.id) continue
 
             // Create embedding for note content

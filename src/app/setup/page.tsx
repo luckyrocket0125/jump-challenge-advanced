@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { CheckCircle, Mail, Calendar, Database, Users, AlertCircle, Play, Square, Activity } from 'lucide-react'
 
-export default function SetupPage() {
+function SetupPageContent() {
   const { data: session } = useSession()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -140,7 +140,7 @@ export default function SetupPage() {
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Welcome to Financial Advisor AI</h1>
           <p className="mt-2 text-gray-600">
-            Let's set up your AI assistant by connecting your data sources
+            Let&apos;s set up your AI assistant by connecting your data sources
           </p>
         </div>
 
@@ -342,5 +342,13 @@ export default function SetupPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function SetupPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SetupPageContent />
+    </Suspense>
   )
 }

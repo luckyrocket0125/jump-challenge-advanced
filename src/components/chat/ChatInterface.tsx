@@ -105,7 +105,7 @@ export default function ChatInterface({ messages, onSendMessage, isLoading }: Ch
                     <p className="text-gray-900">
                       {message.metadata?.hasHighlights ? (
                         <span>
-                          Find meetings I've had with{' '}
+                          Find meetings I&apos;ve had with{' '}
                           {message.metadata.highlights.map((highlight: any, index: number) => (
                             <span key={index}>
                               <span className="inline-flex items-center space-x-1 bg-blue-100 px-2 py-1 rounded">

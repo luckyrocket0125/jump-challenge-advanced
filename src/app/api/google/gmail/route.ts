@@ -5,6 +5,8 @@ import { createAuthenticatedGoogleClient } from '@/lib/google-oauth'
 import { getGmailService, getGmailMessages, getGmailMessage } from '@/lib/google'
 import { prisma } from '@/lib/prisma'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions)

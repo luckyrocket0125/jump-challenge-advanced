@@ -1,5 +1,4 @@
 import { google } from 'googleapis'
-import { OAuth2Client } from 'google-auth-library'
 
 export const GOOGLE_SCOPES = [
   'https://www.googleapis.com/auth/userinfo.email',
